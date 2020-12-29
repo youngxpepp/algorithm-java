@@ -80,8 +80,24 @@ public class Main {
 		}
 	}
 
+	private static void heapifyBottomUp(int[] numArr) {
+		int maxIndex = numArr.length - 1;
+		for (int i = numArr.length - 1; i >= 0; i--) {
+			int leftChild = 2 * i + 1;
+			if (leftChild <= numArr.length - 1) {
+				maxIndex = i;
+				break;
+			}
+		}
+
+		for (int i = maxIndex; i >= 0; i--) {
+			siftDown(numArr, i, numArr.length);
+		}
+	}
+
 	private static void heapSort(int[] numArr) {
-		heapifyTopDown(numArr);
+		// heapifyTopDown(numArr);
+		heapifyBottomUp(numArr);
 
 		int maxIndex = numArr.length - 1;
 		for (int i = maxIndex; i >= 1; i--) {
